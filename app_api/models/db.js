@@ -35,3 +35,4 @@ process.on('SIGINT', function() {
 //import MODELS
 require('./users');
 require('./wAlert');
+require('./post');
