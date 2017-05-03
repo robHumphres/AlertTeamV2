@@ -33,6 +33,10 @@ process.on('SIGINT', function() {
 });
 
 //import MODELS
+require('./loggedAlerts/post');
+require('./loggedAlerts/wAlert');
+require('./loggedAlerts/trafficAlert');
+require('./activeAlerts/activePost');
+require('./activeAlerts/activeWeatherPost');
+require('./activeAlerts/activeTrafficPost');
 require('./users');
-require('./wAlert');
-require('./post');

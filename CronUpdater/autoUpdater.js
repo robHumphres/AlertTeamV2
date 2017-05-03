@@ -1,6 +1,10 @@
+var mongoose = require('mongoose');
 var CronJob = require('cron').CronJob;
 var trafficFunction = require("./trafficFunction");
 var weatherFunction = require("./weatherFunction");
+var ActivePost = mongoose.model('ActivePost');
+var ActiveTrafficPost = mongoose.model('ActiveTrafficPost');
+var ActiveWeatherPost = mongoose.model('ActiveWeatherPost');
 
 //this CronJob object is a repeating timer. It performs the function inside it's second
 //parameter at the time interval specified in the first
@@ -11,10 +15,18 @@ var weatherFunction = require("./weatherFunction");
 //new alerts.
 var job = new CronJob('*/5 * * * * *', function() {
 
-    trafficFunction.trafficAlerts();
-    //alertArray.forEach(addPostFromAlert);
-    weatherFunction.weatherAlerts();
-    console.log("The alerts have been updated!");
+    ActiveTrafficPost.remove({}, function(err){
+      ActiveWeatherPost.remove({}, function(err){
+        ActivePost.remove({}, function(err) {
+          console.log('collection removed');
+          trafficFunction.trafficAlerts();
+          weatherFunction.weatherAlerts();
+          console.log("The alerts have been updated!");
+        })
+      })
+
+    });
+
 
 
   }, null,//this can be replaced with a function that runs at the end

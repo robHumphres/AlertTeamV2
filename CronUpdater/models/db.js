@@ -29,6 +29,10 @@ process.on('SIGINT', function() {
   });
 });
 
-require('./models/post');
-require('./models/wAlert');
-require('./models/trafficAlert');
+require('./loggedAlerts/post');
+require('./loggedAlerts/wAlert');
+require('./loggedAlerts/trafficAlert');
+require('./activeAlerts/activePost');
+require('./activeAlerts/activeWeatherPost');
+require('./activeAlerts/activeTrafficPost');
+require('./users');

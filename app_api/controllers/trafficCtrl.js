@@ -1,10 +1,9 @@
 var mongoose = require('mongoose');
-var Post = mongoose.model('Post');
-var alert;
+var ActiveTrafficPost = mongoose.model('ActiveTrafficPost');
 
-module.exports.addAlertToDb = function(req, res){
+module.exports.getTrafficPosts = function(req, res){
 
-  var array = Post.find({},function(err, result){
+  var array = ActiveTrafficPost.find({},function(err, result){
     res.send(result);
   });
 }
