@@ -1,8 +1,11 @@
-var db = require('./db');//This makes sure the db registers the models
+var db = require('./models/db');//This makes sure the db registers the models
 
 var mongoose = require('mongoose');
 var wAlert = mongoose.model('wAlert');
 var Post = mongoose.model('Post');
+var ActivePost = mongoose.model('ActivePost');
+var ActiveWeatherPost = mongoose.model('ActiveWeatherPost');
+
 
 module.exports.weatherAlerts = function(){
   console.log("Updating Weather Alerts");
@@ -102,16 +105,23 @@ module.exports.weatherAlerts = function(){
                         aId = aId.replace('[\"', '');
             						aId = aId.replace('\"]', '');
 
+                        var info = alert.info;
+                        var desc = jp.query(info, '$..description');
+                        desc += '\nInstructions: \n' + jp.query(info, '$..instruction');
+                        var title = jp.query(info, '$..headline');
+                        var start = jp.query(info, '$..effective');
+                        var end = jp.query(info, '$..expires');
+
+                        var activePost = new ActivePost({title: title, postInfo: desc, time: end});
+                        activePost.save();//add regardless of whether it exists
+                        //because the collection is emptied every time
+
+                        var activeWeatherPost = new ActiveWeatherPost({title: title, postInfo: desc, time: end});
+                        activeWeatherPost.save();
+
                         wAlert.findOne({'AlertID': aId}, function(err, result){
 
                           if(!result){
-                            //If not found, proceed to insert new alert.
-        										var info = alert.info;
-        										var desc = jp.query(info, '$..description');
-                            desc += '\nInstructions: \n' + jp.query(info, '$..instruction');
-        										var title = jp.query(info, '$..headline');
-                            var start = jp.query(info, '$..effective');
-                            var end = jp.query(info, '$..expires');
 
                             var newWeather = new wAlert({AlertID: aId, AlertInfo: jsonString});
                             var weatherPost = new Post({title: title, postInfo: desc, time: end});
