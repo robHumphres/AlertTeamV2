@@ -4,7 +4,7 @@
     .module('meanApp')
     .controller('weatherCtrl', weatherCtrl);
 
-    function WeatherCtrl () {
+    function weatherCtrl () {
       console.log('Weather controller is running');
     }
 
