@@ -1,8 +1,7 @@
 (function() {
-  
+
   angular
-    .module('meanApp')
-    .controller('profileCtrl', profileCtrl);
+    .module('meanApp').controller('profileCtrl', profileCtrl);
 
   profileCtrl.$inject = ['$location', 'meanData'];
   function profileCtrl($location, meanData) {

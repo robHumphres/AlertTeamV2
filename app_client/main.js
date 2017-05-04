@@ -23,12 +23,13 @@
         templateUrl: '/profile/profile.view.html',
         controller: 'profileCtrl',
         controllerAs: 'vm'
+      })
       .when('/weather', {
           templateUrl: '/weather/weather.view.html',
           controller: 'weatherCtrl',
           controllerAs: 'vm'
       })
-      
+
 
     // use the HTML5 History API
     $locationProvider.html5Mode(true);
@@ -43,8 +44,6 @@
   }
 
   angular
-    .module('meanApp')
-    .config(['$routeProvider', '$locationProvider', config])
-    .run(['$rootScope', '$location', 'authentication', run]);
+    .module('meanApp').config(['$routeProvider', '$locationProvider', config]).run(['$rootScope', '$location', 'authentication', run]);
 
 })();
