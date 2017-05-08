@@ -26,8 +26,8 @@
 
 		<div class="row">
 			<div class="col-xs-9 col-xs-offset-3">
-			 <a data-toggle="collapse" href="#collapse1">
-			 {{post.postInfo}}
+			 <a data-toggle="collapse" href="#collapse{{$index}}">
+			 This is just something I'm not sure what yet...
 			 </a>
 			</div>
 
@@ -35,15 +35,16 @@
 
 	<!-- this is the panel div for the header row -->
 
-	  </div><!-- panel-heading -->
-
-
-	<div id="collapse1" class="panel-collapse collapse">
+  <div id="collapse{{$index}}" class="panel-collapse collapse">
         <p align="center"><!-- {{agency.description}} -->
-        Post info...
+          <br/>
+        {{post.postInfo}}
         </p>
 
-	</div>
+  </div>
+
+	  </div><!-- panel-heading -->
+
 
 </div><!-- end of panel panel-default -->
 
