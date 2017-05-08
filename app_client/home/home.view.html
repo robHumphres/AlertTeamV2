@@ -11,7 +11,7 @@
   <div class="panel panel-default" style="max-width:800px;margin-left:auto; margin-right:auto;">
 
 <!-- ng-repeat is like a for loop. It takes each post inside the vm posts until there's non left to view -->
-	<div class="panel-heading" ng-repeat="post in vm.post">
+	<div class="panel-heading" style="margin-bottom:15px" ng-repeat="post in vm.post">
   		<div class="row">
   			<div class="col-xs-4">
 
@@ -21,8 +21,8 @@
   				</div>
 
   				<div class="col-xs-8 text-middle">
-  					<p style="font-size:120%">Title!</p> <!-- Title of whats happening? -->
-  					<p>HeadLiner</p><!--<p>{{post.title}}</p> -->
+  					<p style="font-size:120%">{{post.title}}</p> <!-- Title of whats happening? -->
+  					<p></p><!--<p>{{post.title}}</p> -->
   				</div>
 
   		</div>
@@ -45,8 +45,8 @@
           {{post.postInfo}}
           </p>
     </div><!-- end of collapse div -->
- </div><!-- panel-heading -->
 
+ </div><!-- panel-heading -->
 
 </div><!-- end of panel panel-default -->
 
