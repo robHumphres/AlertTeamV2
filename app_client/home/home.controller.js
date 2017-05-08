@@ -14,7 +14,7 @@
         time : "10:25 AM May 6 2017"
       };
       vm.post ={};
-
+      
       postData.getPosts()
       .success(function(data){
         vm.post = data;
