@@ -29,6 +29,8 @@
           controller: 'weatherCtrl',
           controllerAs: 'vm'
       })
+      //This line was added to handle the collapse issue on reload.
+      .otherwise({redirectTo : '/'})
 
 
     // use the HTML5 History API

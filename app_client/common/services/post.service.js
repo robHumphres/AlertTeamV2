@@ -8,11 +8,11 @@
 	function postData($http,authentication){
 
   	var getPosts = function(){
-  		return $http.get('/api/traffic');
+  		return $http.get('/api/allPosts');
   	};
 
 	  return{
-      getPosts: getPosts
+      getPosts : getPosts
     };
 	}
 
