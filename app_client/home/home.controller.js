@@ -8,8 +8,12 @@
     homeCtrl.$inject = ['$location','postData'];
     function homeCtrl ($location,postData) {
       var vm = this;
-      vm.post = {};
-      vm.test = 'do something crazy';
+      vm.posts = {
+        title:"Washington State Huge Problem",
+        postInfo: "People just cannot Drive here...",
+        time : "10:25 AM May 6 2017"
+      };
+      vm.post ={};
 
       postData.getPosts()
       .success(function(data){
