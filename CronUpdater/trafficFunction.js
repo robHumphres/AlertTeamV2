@@ -42,16 +42,16 @@ function addAlertArray(array, index){
 }//end addAlertArray
 
 function addActiveTrafficPost(alert){
-  var activeTrafficPost = new ActiveTrafficPost({title: alert.EventCategory, postInfo: alert.HeadlineDescription, time: alert.StartTime});
+  var activeTrafficPost = new ActiveTrafficPost({agency: 'WSDOT', imageLink: 'http://4vector.com/i/free-vector-wsdot-0_075021_wsdot-0.png',title: alert.EventCategory, postInfo: alert.HeadlineDescription, time: alert.StartTime});
   activeTrafficPost.save();
 }
 
 function addActivePost(alert){
-  var activePost = new ActivePost({title: alert.EventCategory, postInfo: alert.HeadlineDescription, time: alert.StartTime});
+  var activePost = new ActivePost({agency: 'WSDOT', imageLink: 'http://4vector.com/i/free-vector-wsdot-0_075021_wsdot-0.png',title: alert.EventCategory, postInfo: alert.HeadlineDescription, time: alert.StartTime});
   activePost.save();
 }
 
 function addPost(alert){
-  var post = new Post({title: alert.EventCategory, postInfo: alert.HeadlineDescription, time: alert.StartTime});
+  var post = new Post({agency: 'WSDOT', imageLink: 'http://4vector.com/i/free-vector-wsdot-0_075021_wsdot-0.png',title: alert.EventCategory, postInfo: alert.HeadlineDescription, time: alert.StartTime});
   post.save();
 }//end addAlert
