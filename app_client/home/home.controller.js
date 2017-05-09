@@ -8,9 +8,13 @@
     homeCtrl.$inject = ['$location','postData'];
     function homeCtrl ($location,postData) {
       var vm = this;
-      vm.post = {};
-      vm.test = 'do something crazy';
-
+      vm.posts = {
+        title:"Washington State Huge Problem",
+        postInfo: "People just cannot Drive here...",
+        time : "10:25 AM May 6 2017"
+      };
+      vm.post ={};
+      //following is inside vm.post. post.title, post.postInfo, post.time
       postData.getPosts()
       .success(function(data){
         vm.post = data;

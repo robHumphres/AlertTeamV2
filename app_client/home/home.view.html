@@ -3,50 +3,51 @@
 <div class="container" >
 
   <h1>Alert System Gatherer</h1>
-  <h2>Welcome {{vm.test}}</h2>
 
   <p>Please <a href="login">sign in</a> or <a href="register">register</a>?</p>
-
+  <br/><br/>
   <div class="container" >
+    <!-- start of Boot Strap Paneling -->
   <div class="panel panel-default" style="max-width:800px;margin-left:auto; margin-right:auto;">
 
-	<div class="panel-heading" ng-init="personName='John Doe'" >
-		<div class="row">
-			<div class="col-xs-4">
+<!-- ng-repeat is like a for loop. It takes each post inside the vm posts until there's non left to view -->
+	<div class="panel-heading" style="margin-bottom:15px" ng-repeat="post in vm.post">
+  		<div class="row">
+  			<div class="col-xs-4">
 
-				<img src="http://il8.picdn.net/shutterstock/videos/8573704/thumb/1.jpg" style="width:100px;height:100px;">
-				<p>WSDOT</p> <!--<p>{{agency.title}}</p> -->
-				</div>
+          <!-- "Profile picture" for Bootstrap Panel -->
+  				<img src="http://il8.picdn.net/shutterstock/videos/8573704/thumb/1.jpg" style="width:100px;height:100px;">
+  				<p>WSDOT</p> <!-- This is where the agency goes -->
+  				</div>
 
-				<div class="col-xs-8 text-middle">
-					<p style="font-size:120%">Huge Accident on I-405</p>
-					<p>{{personName}}{{vm.post}}{{vm.title}}</p>
-				</div>
-		</div>
+  				<div class="col-xs-8 text-middle">
+  					<p style="font-size:120%">{{post.title}}</p> <!-- Title of whats happening? -->
+  					<p></p><!--<p>{{post.title}}</p> -->
+  				</div>
 
-		<div class="row">
-			<div class="col-xs-9 col-xs-offset-3">
-			 <a data-toggle="collapse" href="#collapse1">
-			 There was a huge accident on 405 because
-			 people don't know how to drive... Click here for more...
-			 </a>
-			</div>
+  		</div>
 
-		</div><!-- end of row div-->
+  		<div class="row">
+  			<div class="col-xs-9 col-xs-offset-3">
+            <!-- $index is a scope that ng-repeat uses kind of like a for loop counter. need it for dynamic panels and collapses -->
+    			 <a data-toggle="collapse" data-target = "#collapse{{$index}}" href="">
+    			 This is just something I'm not sure what yet...
+           <!-- this is where the brief header will go -->
+    			 </a>
+  			</div>
+  		</div><!-- end of row div-->
+  	<!-- this is the panel div for the header row -->
 
-	<!-- this is the panel div for the header row -->
-	  </div><!-- panel-heading -->
+    <!-- where the bootstrap collapse panel is created -->
+    <div id="collapse{{$index}}" class="panel-collapse collapse">
+          <p align="center"><!-- {{agency.description}} -->
+            <br/>
+          {{post.postInfo}}
+          </p>
+    </div><!-- end of collapse div -->
 
-
-	<div id="collapse1" class="panel-collapse collapse">
-        <p align="center"><!-- {{agency.description}} -->
-        This hsould be a pretty long paragraph and i'm not really sure about what else i should put there and and i'm just still typing to just think of doing somethign, but i'm not sure if this will still be long enough so now we're going to go longer and longer. <a href="http://www.google.com">Google</a>
-
-        id {{vm.post.id}}
-        </p>
-
-	</div>
+ </div><!-- panel-heading -->
 
 </div><!-- end of panel panel-default -->
 
-</div>
+</div><!-- end of main container -->
