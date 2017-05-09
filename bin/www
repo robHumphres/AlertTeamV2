@@ -1,5 +1,5 @@
 var app = require('../app');
-var debug = require('debug')('MEAN-stack-authentication:server');
+var debug = require('debug')('Alert-System-V2:server');
 var http = require('http');
 
 var port = normalizePort(process.env.PORT || '3000');
@@ -8,7 +8,7 @@ app.set('port', port);
 
 var server = http.createServer(app);
 
-server.listen(port);
+server.listen(port, "0.0.0.0");
 server.on('error', onError);
 server.on('listening', onListening);
 
