@@ -29,10 +29,10 @@ process.on('SIGINT', function() {
   });
 });
 
-require('./loggedAlerts/post');
-require('./loggedAlerts/wAlert');
-require('./loggedAlerts/trafficAlert');
-require('./activeAlerts/activePost');
-require('./activeAlerts/activeWeatherPost');
-require('./activeAlerts/activeTrafficPost');
-require('./users');
+require('../app_api/models/loggedAlerts/post');
+require('../app_api/models/loggedAlerts/wAlert');
+require('../app_api/models/loggedAlerts/trafficAlert');
+require('../app_api/models/activeAlerts/activePost');
+require('../app_api/models/activeAlerts/activeWeatherPost');
+require('../app_api/models/activeAlerts/activeTrafficPost');
+require('../app_api/models/users');
