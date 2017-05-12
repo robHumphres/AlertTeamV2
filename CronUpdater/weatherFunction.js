@@ -1,4 +1,4 @@
-var db = require('./models/db');//This makes sure the db registers the models
+var db = require('./db');//This makes sure the db registers the models
 
 var mongoose = require('mongoose');
 var wAlert = mongoose.model('wAlert');
