@@ -14,7 +14,6 @@ var userSchema = new mongoose.Schema({
   },
   hash: String,
   salt: String,
-  deviceId: String,
   filter: [String]
 });
 
