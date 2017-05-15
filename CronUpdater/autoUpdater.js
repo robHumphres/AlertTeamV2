@@ -16,7 +16,6 @@ var ActiveWeatherPost = mongoose.model('ActiveWeatherPost');
 
 var job = new CronJob('0 */5 * * * * *', function() {
 
-
     ActiveTrafficPost.remove({}, function(err){
       ActiveWeatherPost.remove({}, function(err){
         ActivePost.remove({}, function(err) {
