@@ -4,7 +4,8 @@ var activePostSchema = mongoose.Schema({
     agency: String,
     imageLink: String,
     title: String,
-    postInfo: String,
+    briefDescription: String,
+    description: String,
     time: Date
 });
 

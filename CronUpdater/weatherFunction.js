@@ -1,4 +1,4 @@
-var db = require('./models/db');//This makes sure the db registers the models
+var db = require('./db');//This makes sure the db registers the models
 
 var mongoose = require('mongoose');
 var wAlert = mongoose.model('wAlert');
@@ -112,11 +112,20 @@ module.exports.weatherAlerts = function(){
                         var start = jp.query(info, '$..effective');
                         var end = jp.query(info, '$..expires');
 
-                        var activePost = new ActivePost({agency: 'NOAA', imageLink: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/NOAA_logo.svg/768px-NOAA_logo.svg.png',title: title, postInfo: desc, time: end});
+                        var activePost;
+                        var activeWeatherPost;
+                        if(desc.length > 100){
+                          var briefDesc = desc.substring(0, 99);
+                          activePost = new ActivePost({agency: 'NOAA', imageLink: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/NOAA_logo.svg/768px-NOAA_logo.svg.png',title: title, briefDescription: briefDesc, description: desc, time: end});
+                          activeWeatherPost = new ActiveWeatherPost({agency: 'NOAA', imageLink: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/NOAA_logo.svg/768px-NOAA_logo.svg.png',title: title, briefDescription: briefDesc, description: desc, time: end});
+                        }
+                        else{
+                          activePost = new ActivePost({agency: 'NOAA', imageLink: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/NOAA_logo.svg/768px-NOAA_logo.svg.png',title: title, briefDescription: desc, time: end});
+                          activeWeatherPost = new ActiveWeatherPost({agency: 'NOAA', imageLink: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/NOAA_logo.svg/768px-NOAA_logo.svg.png',title: title, briefDescription: desc, time: end});
+                        }
+
                         activePost.save();//add regardless of whether it exists
                         //because the collection is emptied every time
-
-                        var activeWeatherPost = new ActiveWeatherPost({agency: 'NOAA', imageLink: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/NOAA_logo.svg/768px-NOAA_logo.svg.png',title: title, postInfo: desc, time: end});
                         activeWeatherPost.save();
 
                         wAlert.findOne({'AlertID': aId}, function(err, result){
@@ -124,8 +133,19 @@ module.exports.weatherAlerts = function(){
                           //the logged alerts
                           if(!result){
 
-                            var newWeather = new wAlert({AlertID: aId, AlertInfo: jsonString});
-                            var weatherPost = new Post({agency: 'NOAA', imageLink: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/NOAA_logo.svg/768px-NOAA_logo.svg.png',title: title, postInfo: desc, time: end});
+                            var newWeather;
+                            var weatherPost;
+
+                            if(desc.length > 100){
+                              var briefDesc = desc.substring(0, 99);
+                              newWeather = new wAlert({AlertID: aId, AlertInfo: jsonString});
+                              weatherPost = new Post({agency: 'NOAA', imageLink: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/NOAA_logo.svg/768px-NOAA_logo.svg.png',title: title, briefDescription: briefDesc, description: desc, time: end});
+                            }
+                            else{
+                              newWeather = new wAlert({AlertID: aId, AlertInfo: jsonString});
+                              weatherPost = new Post({agency: 'NOAA', imageLink: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/NOAA_logo.svg/768px-NOAA_logo.svg.png',title: title, briefDescription: desc, time: end});
+                            }
+
                             newWeather.save();
                             weatherPost.save();
 
