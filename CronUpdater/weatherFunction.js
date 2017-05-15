@@ -116,12 +116,12 @@ module.exports.weatherAlerts = function(){
                         var activeWeatherPost;
                         if(desc.length > 100){
                           var briefDesc = desc.substring(0, 99);
-                          activePost = new ActivePost({agency: 'NOAA', imageLink: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/NOAA_logo.svg/768px-NOAA_logo.svg.png',title: title, briefDescription: briefDesc, description: desc, time: end , clickMore: "Click For More Info"});
-                          activeWeatherPost = new ActiveWeatherPost({agency: 'NOAA', imageLink: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/NOAA_logo.svg/768px-NOAA_logo.svg.png',title: title, briefDescription: briefDesc, description: desc, time: end, clickMore: "Click For More Info"});
+                          activePost = new ActivePost({agency: 'NOAA', imageLink: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/NOAA_logo.svg/768px-NOAA_logo.svg.png',title: title, briefDescription: briefDesc, description: desc, time: start , clickMore: "Click For More Info"});
+                          activeWeatherPost = new ActiveWeatherPost({agency: 'NOAA', imageLink: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/NOAA_logo.svg/768px-NOAA_logo.svg.png',title: title, briefDescription: briefDesc, description: desc, time: start, clickMore: "Click For More Info"});
                         }
                         else{
-                          activePost = new ActivePost({agency: 'NOAA', imageLink: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/NOAA_logo.svg/768px-NOAA_logo.svg.png',title: title, briefDescription: desc, time: end});
-                          activeWeatherPost = new ActiveWeatherPost({agency: 'NOAA', imageLink: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/NOAA_logo.svg/768px-NOAA_logo.svg.png',title: title, briefDescription: desc, time: end});
+                          activePost = new ActivePost({agency: 'NOAA', imageLink: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/NOAA_logo.svg/768px-NOAA_logo.svg.png',title: title, briefDescription: desc, time: start});
+                          activeWeatherPost = new ActiveWeatherPost({agency: 'NOAA', imageLink: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/NOAA_logo.svg/768px-NOAA_logo.svg.png',title: title, briefDescription: desc, time: start});
                         }
 
                         activePost.save();//add regardless of whether it exists
