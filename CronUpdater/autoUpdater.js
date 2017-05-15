@@ -13,7 +13,11 @@ var ActiveWeatherPost = mongoose.model('ActiveWeatherPost');
 //every 5 seconds. The function itself is getting the DOT
 //alerts from Spokane and updating the alertArray with the
 //new alerts.
+<<<<<<< HEAD
 var job = new CronJob('*/5 * * * * *', function() {
+=======
+var job = new CronJob('0 */5 * * * * *', function() {
+>>>>>>> SubString-on-backend
 
     ActiveTrafficPost.remove({}, function(err){
       ActiveWeatherPost.remove({}, function(err){

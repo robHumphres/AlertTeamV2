@@ -6,7 +6,11 @@
   <br/><br/>
   <div class="container" >
     <!-- start of Boot Strap Paneling -->
+<<<<<<< HEAD
   <div class="panel panel-default" style="max-width:800px;margin-left:auto; margin-right:auto;" ng-repeat="post in vm.post">
+=======
+  <div class="panel panel-default" style="max-width:800px; margin-left:auto; margin-right:auto;" ng-repeat="post in vm.post">
+>>>>>>> SubString-on-backend
 
 <!-- ng-repeat is like a for loop. It takes each post inside the vm posts until there's non left to view -->
 	<div class="panel-heading" >
@@ -14,17 +18,21 @@
   			<div class="col-xs-4">
 
           <!-- "Profile picture" for Bootstrap Panel -->
-  				<img src="http://il8.picdn.net/shutterstock/videos/8573704/thumb/1.jpg" style="width:100px;height:107px;">
-  				<p>WSDOT</p> <!-- This is where the agency goes -->
+
+  				<img src="{{post.imageLink}}" style="width:100px;height:107px;">
+  				<p>{{post.agency}}</p> <!-- This is where the agency goes -->
+
   				</div>
 		  <!-- post title-->
   				<div class="col-xs-8 text-middle">
   					<p style="font-size:120%">{{post.title}}</p> <!-- Title of whats happening? -->
-  					<p>What's going on here</p><!--<p>{{post.title}}</p> -->
+
+  					<p>{{post.briefDescription}}</p><!--<p>{{post.title}}</p> -->
                   <br/><br/>
                   <!-- $index is a scope that ng-repeat uses kind of like a for loop counter. need it for dynamic panels and collapses -->
     			 <a data-toggle="collapse" data-target = "#collapse{{$index}}" href="">
-    			 Click here for more info...
+    			 {{post.clickMore}}
+
            <!-- this is where the brief header will go -->
     			 </a>
   				</div>
@@ -38,7 +46,7 @@
     <div id="collapse{{$index}}" class="panel-collapse collapse">
           <p align="center"><!-- {{agency.description}} -->
             <br/>
-          {{post.postInfo}}
+          {{post.description}}
           </p>
     </div><!-- end of collapse div -->
 
