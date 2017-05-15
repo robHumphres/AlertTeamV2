@@ -1,5 +1,3 @@
-<navigation></navigation>
-
 <div class="container" >
 
   <h1>Alert System Gatherer</h1>
@@ -8,34 +6,32 @@
   <br/><br/>
   <div class="container" >
     <!-- start of Boot Strap Paneling -->
-  <div class="panel panel-default" style="max-width:800px;margin-left:auto; margin-right:auto;">
+  <div class="panel panel-default" style="max-width:800px;margin-left:auto; margin-right:auto;" ng-repeat="post in vm.post">
 
 <!-- ng-repeat is like a for loop. It takes each post inside the vm posts until there's non left to view -->
-	<div class="panel-heading" style="margin-bottom:15px" ng-repeat="post in vm.post">
+	<div class="panel-heading" >
   		<div class="row">
   			<div class="col-xs-4">
 
           <!-- "Profile picture" for Bootstrap Panel -->
-  				<img src="http://il8.picdn.net/shutterstock/videos/8573704/thumb/1.jpg" style="width:100px;height:100px;">
+  				<img src="http://il8.picdn.net/shutterstock/videos/8573704/thumb/1.jpg" style="width:100px;height:107px;">
   				<p>WSDOT</p> <!-- This is where the agency goes -->
   				</div>
-
+		  <!-- post title-->
   				<div class="col-xs-8 text-middle">
   					<p style="font-size:120%">{{post.title}}</p> <!-- Title of whats happening? -->
-  					<p></p><!--<p>{{post.title}}</p> -->
-  				</div>
-
-  		</div>
-
-  		<div class="row">
-  			<div class="col-xs-9 col-xs-offset-3">
-            <!-- $index is a scope that ng-repeat uses kind of like a for loop counter. need it for dynamic panels and collapses -->
+  					<p>What's going on here</p><!--<p>{{post.title}}</p> -->
+                  <br/><br/>
+                  <!-- $index is a scope that ng-repeat uses kind of like a for loop counter. need it for dynamic panels and collapses -->
     			 <a data-toggle="collapse" data-target = "#collapse{{$index}}" href="">
     			 This is just something I'm not sure what yet...
            <!-- this is where the brief header will go -->
     			 </a>
-  			</div>
-  		</div><!-- end of row div-->
+  				</div>
+
+  		</div>
+
+
   	<!-- this is the panel div for the header row -->
 
     <!-- where the bootstrap collapse panel is created -->
