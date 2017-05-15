@@ -6,6 +6,7 @@ var activeTrafficPostSchema = mongoose.Schema({
     title: String,
     briefDescription: String,
     description: String,
+    clickMore: String,
     time: Date
 });
 

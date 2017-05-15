@@ -44,10 +44,10 @@ function addActivePosts(alert){
   var activeTrafficPost;
   var activePost;
 
-  if(alert.HeadlineDescription.length > 100){//if its too big
+  if(alert.HeadlineDescription.length > 200){//if its too big
     var brief = alert.HeadlineDescription.substring(0, 99);
-    activePost = new ActivePost({agency: 'WSDOT', imageLink: 'http://4vector.com/i/free-vector-wsdot-0_075021_wsdot-0.png',title: alert.EventCategory, briefDescription: brief, description: alert.HeadlineDescription, time: alert.StartTime});
-    activeTrafficPost = new ActiveTrafficPost({agency: 'WSDOT', imageLink: 'http://4vector.com/i/free-vector-wsdot-0_075021_wsdot-0.png',title: alert.EventCategory, briefDescription: brief, description: alert.HeadlineDescription, time: alert.StartTime});
+    activePost = new ActivePost({agency: 'WSDOT', imageLink: 'http://4vector.com/i/free-vector-wsdot-0_075021_wsdot-0.png',title: alert.EventCategory, briefDescription: brief, description: alert.HeadlineDescription, time: alert.StartTime, clickMore: "Click For More Info"});
+    activeTrafficPost = new ActiveTrafficPost({agency: 'WSDOT', imageLink: 'http://4vector.com/i/free-vector-wsdot-0_075021_wsdot-0.png',title: alert.EventCategory, briefDescription: brief, description: alert.HeadlineDescription, time: alert.StartTime, clickMore: "Click For More Info"});
   }
   else{
     activePost = new ActivePost({agency: 'WSDOT', imageLink: 'http://4vector.com/i/free-vector-wsdot-0_075021_wsdot-0.png',title: alert.EventCategory, briefDescription: alert.HeadlineDescription, time: alert.StartTime});
@@ -59,10 +59,10 @@ function addActivePosts(alert){
 
 function addPost(alert){
   var post;
-  
+
   if(alert.HeadlineDescription.length > 100){
     var brief = alert.HeadlineDescription.substring(0, 99);
-    post = new Post({agency: 'WSDOT', imageLink: 'http://4vector.com/i/free-vector-wsdot-0_075021_wsdot-0.png',title: alert.EventCategory, briefDescription: brief, description: alert.HeadlineDescription, time: alert.StartTime});
+    post = new Post({agency: 'WSDOT', imageLink: 'http://4vector.com/i/free-vector-wsdot-0_075021_wsdot-0.png',title: alert.EventCategory, briefDescription: brief, description: alert.HeadlineDescription, time: alert.StartTime, clickMore: "Click For More Info"});
   }
   else{
     post = new Post({agency: 'WSDOT', imageLink: 'http://4vector.com/i/free-vector-wsdot-0_075021_wsdot-0.png',title: alert.EventCategory, briefDescription: alert.HeadlineDescription, time: alert.StartTime});
