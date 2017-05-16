@@ -9,54 +9,26 @@ var ActivePost = mongoose.model('ActivePost');
 var TrafficAlert = mongoose.model('TrafficAlert');
 var ActiveTrafficPost = mongoose.model('ActiveTrafficPost');
 var User = mongoose.model('User');
-
+var Email = require('./emailFunction');
 var newAlerts = false;
 
 module.exports.trafficAlerts = function(){
+
+  newAlerts = false;
   wsdotSoapFunction.getAlertsForSpokaneAreaInCallback(function(result){
-    addAlertArray(result, 0);
+    addAlertArray(result, 0, newAlerts, Email.sendEmail);
   });
 
   //console.log("lsdfjsdlfjsdlfjsdflsdj");
-  if(newAlerts == true){
-
-    var transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-          user: 'alertSystem.do.not.reply@gmail.com',
-          pass: 'mangoisnotthenameofthedb'
-      }
-    });
-
-    User.find({},function(err, result){
-      for(var i = 0; i < result.length; i++){
-        console.log(result[i].email.type);
-        var mailOptions = {
-          from: 'alertSystem.do.not.reply@gmail.com', // sender address
-          to: result[i].email, // list of receivers
-          subject: 'New Alerts', // Subject line
-          text: 'Hello world ?', // plain text body
-          html: '<b>Hello world ?</b>' // html body
-        };
-
-        // send mail with defined transport object
-        transporter.sendMail(mailOptions, (error, info) => {
-          if (error) {
-            return console.log(error);
-          }
-          console.log('Message %s sent: %s', info.messageId, info.response);
-        });
-      }
-    });
-
-  }
-
-
 }//end addArrayToDb
 
-function addAlertArray(array, index){
+function addAlertArray(array, index, isNew, callback){
   if(array.length == index){
     console.log("Ending recursion");
+
+    if(isNew == true){
+      callback("New Traffic Alerts");
+    }
     return;
   }
 
@@ -70,15 +42,16 @@ function addAlertArray(array, index){
 
   TrafficAlert.findOne({'AlertID': alert.AlertID}, function(err, result){
     if(!result){
+      isNew = true;
       console.log("Alert added");
       alert.save();
       addPost(alert);
-      newAlerts = true;
     }
     else{
       console.log("Alert already added");
     }
-  }).then(addAlertArray(array, index + 1));//recursive call
+    addAlertArray(array, index + 1, isNew, callback);
+  });//recursive call
 }//end addAlertArray
 
 function addActiveTrafficPost(alert){

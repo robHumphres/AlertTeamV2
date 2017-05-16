@@ -5,11 +5,13 @@ var wAlert = mongoose.model('wAlert');
 var Post = mongoose.model('Post');
 var ActivePost = mongoose.model('ActivePost');
 var ActiveWeatherPost = mongoose.model('ActiveWeatherPost');
-
+var Email = require('./emailFunction');
+var newAlert;
 
 module.exports.weatherAlerts = function(){
   console.log("Updating Weather Alerts");
   var https = require('https');
+  newAlert = false;
 	//Washington
 	//url = 'https://alerts.weather.gov/cap/wa.php?x=0';
 	//Idaho
@@ -67,6 +69,7 @@ module.exports.weatherAlerts = function(){
             }//End of Check for active alerts
 
             //Only proceed if active alerts exist.
+            var alertCtr = 0;
             if(flag){
     					var x = 0;
     					for(;x < ids.length; x++ ){
@@ -123,7 +126,7 @@ module.exports.weatherAlerts = function(){
                           //if there isn't already a logged alert then add it to
                           //the logged alerts
                           if(!result){
-
+                            newAlert = true;
                             var newWeather = new wAlert({AlertID: aId, AlertInfo: jsonString});
                             var weatherPost = new Post({agency: 'NOAA', imageLink: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/NOAA_logo.svg/768px-NOAA_logo.svg.png',title: title, postInfo: desc, time: end});
                             newWeather.save();
@@ -134,6 +137,11 @@ module.exports.weatherAlerts = function(){
                           //Else do nothing.
                           else {
                             console.log('weather alert already exists');
+                          }
+                          alertCtr++;
+
+                          if(alertCtr == ids.length && newAlert == true){
+                            Email.sendEmail("New Weather Alerts");
                           }
                         });//End of "find" callback.
     										//console.log('ID:   ' + aId);
@@ -147,6 +155,7 @@ module.exports.weatherAlerts = function(){
     							console.error(e);
     						});
     					}//End of each alert for loop.
+
             }//End of if there are active alerts.
           });//End of parsestring
 
