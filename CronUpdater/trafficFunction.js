@@ -2,25 +2,36 @@ var db = require('./db');//This makes sure the db registers the models
 
 var mongoose = require('mongoose');
 var wsdotSoapFunction = require("./wsdotSoapFunction");
+var nodemailer = require('nodemailer');
 
 var Post = mongoose.model('Post');
 var ActivePost = mongoose.model('ActivePost');
 var TrafficAlert = mongoose.model('TrafficAlert');
 var ActiveTrafficPost = mongoose.model('ActiveTrafficPost');
+var User = mongoose.model('User');
+var Email = require('./emailFunction');
+var newAlerts = false;
 
 module.exports.trafficAlerts = function(){
+
+  newAlerts = false;
   wsdotSoapFunction.getAlertsForSpokaneAreaInCallback(function(result){
-    addAlertArray(result, 0);
+    addAlertArray(result, 0, newAlerts, Email.sendEmail);
   });
 
-
+  //console.log("lsdfjsdlfjsdlfjsdflsdj");
 }//end addArrayToDb
 
-function addAlertArray(array, index){
+function addAlertArray(array, index, isNew, callback){
   if(array.length == index){
     console.log("Ending recursion");
+
+    if(isNew == true){
+      callback("New Traffic Alerts");
+    }
     return;
   }
+
 
   var alert;
   var activeAlert;
@@ -30,6 +41,7 @@ function addAlertArray(array, index){
 
   TrafficAlert.findOne({'AlertID': alert.AlertID}, function(err, result){
     if(!result){
+      isNew = true;
       console.log("Alert added");
       alert.save();
       addPost(alert);
@@ -37,7 +49,8 @@ function addAlertArray(array, index){
     else{
       console.log("Alert already added");
     }
-  }).then(addAlertArray(array, index + 1));//recursive call
+    addAlertArray(array, index + 1, isNew, callback);
+  });//recursive call
 }//end addAlertArray
 
 function addActivePosts(alert){
