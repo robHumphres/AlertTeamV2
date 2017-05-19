@@ -110,7 +110,8 @@ module.exports.weatherAlerts = function(){
 
                         var info = alert.info;
                         var desc = jp.query(info, '$..description');
-                        desc += '\nInstructions: \n' + jp.query(info, '$..instruction');
+                        var instruct = jp.query(info, '$..instruction');
+                        if(instruct != "")
                         var title = jp.query(info, '$..headline');
                         var start = jp.query(info, '$..effective');
                         var end = jp.query(info, '$..expires');
@@ -119,12 +120,12 @@ module.exports.weatherAlerts = function(){
                         var activeWeatherPost;
                         if(desc.length > 100){
                           var briefDesc = desc.substring(0, 99);
-                          activePost = new ActivePost({agency: 'NOAA', imageLink: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/NOAA_logo.svg/768px-NOAA_logo.svg.png',title: title, briefDescription: briefDesc, description: desc, time: start , clickMore: "Click For More Info"});
-                          activeWeatherPost = new ActiveWeatherPost({agency: 'NOAA', imageLink: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/NOAA_logo.svg/768px-NOAA_logo.svg.png',title: title, briefDescription: briefDesc, description: desc, time: start, clickMore: "Click For More Info"});
+                          activePost = new ActivePost({agency: 'NWS', imageLink: 'https://lh3.googleusercontent.com/h-JAS3MkLJY01uHuSAmc2JHB_LPegfQfYpT8qYs1R3KgrJUOkuGq21qjTlrdP1a79g=w300',title: title, briefDescription: briefDesc, description: desc, time: start , clickMore: "Click For More Info"});
+                          activeWeatherPost = new ActiveWeatherPost({agency: 'NWS', imageLink: 'https://lh3.googleusercontent.com/h-JAS3MkLJY01uHuSAmc2JHB_LPegfQfYpT8qYs1R3KgrJUOkuGq21qjTlrdP1a79g=w300',title: title, briefDescription: briefDesc, description: desc, time: start, clickMore: "Click For More Info"});
                         }
                         else{
-                          activePost = new ActivePost({agency: 'NOAA', imageLink: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/NOAA_logo.svg/768px-NOAA_logo.svg.png',title: title, briefDescription: desc, time: start});
-                          activeWeatherPost = new ActiveWeatherPost({agency: 'NOAA', imageLink: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/NOAA_logo.svg/768px-NOAA_logo.svg.png',title: title, briefDescription: desc, time: start});
+                          activePost = new ActivePost({agency: 'NWS', imageLink: 'https://lh3.googleusercontent.com/h-JAS3MkLJY01uHuSAmc2JHB_LPegfQfYpT8qYs1R3KgrJUOkuGq21qjTlrdP1a79g=w300',title: title, briefDescription: desc, time: start});
+                          activeWeatherPost = new ActiveWeatherPost({agency: 'NWS', imageLink: 'https://lh3.googleusercontent.com/h-JAS3MkLJY01uHuSAmc2JHB_LPegfQfYpT8qYs1R3KgrJUOkuGq21qjTlrdP1a79g=w300',title: title, briefDescription: desc, time: start});
                         }
 
                         activePost.save();//add regardless of whether it exists
@@ -143,11 +144,11 @@ module.exports.weatherAlerts = function(){
                             if(desc.length > 200){
                               var briefDesc = desc.substring(0, 99);
                               newWeather = new wAlert({AlertID: aId, AlertInfo: jsonString});
-                              weatherPost = new Post({agency: 'NOAA', imageLink: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/NOAA_logo.svg/768px-NOAA_logo.svg.png',title: title, briefDescription: briefDesc, description: desc, time: end, clickMore: "Click For More Info"});
+                              weatherPost = new Post({agency: 'NWS', imageLink: 'https://lh3.googleusercontent.com/h-JAS3MkLJY01uHuSAmc2JHB_LPegfQfYpT8qYs1R3KgrJUOkuGq21qjTlrdP1a79g=w300',title: title, briefDescription: briefDesc, description: desc, time: end, clickMore: "Click For More Info"});
                             }
                             else{
                               newWeather = new wAlert({AlertID: aId, AlertInfo: jsonString});
-                              weatherPost = new Post({agency: 'NOAA', imageLink: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/NOAA_logo.svg/768px-NOAA_logo.svg.png',title: title, briefDescription: desc, time: end});
+                              weatherPost = new Post({agency: 'NWS', imageLink: 'https://lh3.googleusercontent.com/h-JAS3MkLJY01uHuSAmc2JHB_LPegfQfYpT8qYs1R3KgrJUOkuGq21qjTlrdP1a79g=w300',title: title, briefDescription: desc, time: end});
                             }
                             newWeather.save();
                             weatherPost.save();
