@@ -22,7 +22,7 @@ router.post('/login', ctrlAuth.login);
 //alerts
 router.get('/traffic', ctrlTraffic.getTrafficPosts);
 router.get('/weather', ctrlWeath.getWeatherPosts);
-router.get('/allPosts', ctrlAllPost.getAllPosts);
+router.post('/allPosts', ctrlAllPost.getAllPosts);
 
 
 module.exports = router;

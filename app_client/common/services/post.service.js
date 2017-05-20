@@ -8,9 +8,11 @@
 	function postData($http,authentication){
 
   	var getPosts = function(){
-  		return $http.get('/api/allPosts');
+			var vm = this;
+	    vm.currentUser = authentication.currentUser();
+			var email = vm.currentUser.email;
+  		return $http.post('/api/allPosts', {email: email});
   	};
-
 	  return{
       getPosts : getPosts
     };

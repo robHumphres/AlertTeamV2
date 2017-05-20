@@ -112,6 +112,7 @@ module.exports.weatherAlerts = function(){
                         var desc = jp.query(info, '$..description');
                         var instruct = jp.query(info, '$..instruction');
                         if(instruct != "")
+                          desc += '\nInstructions: \n' + jp.query(info, '$..instruction');
                         var title = jp.query(info, '$..headline');
                         var start = jp.query(info, '$..effective');
                         var end = jp.query(info, '$..expires');
