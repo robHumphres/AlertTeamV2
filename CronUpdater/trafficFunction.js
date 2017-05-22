@@ -27,7 +27,7 @@ function addAlertArray(array, index, isNew, callback){
     console.log("Ending recursion");
 
     if(isNew == true){
-      callback("New Traffic Alerts");
+      callback("traffic");
     }
     return;
   }
