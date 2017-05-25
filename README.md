@@ -23,3 +23,25 @@ These are the four key components of [MEAN stack](http://meanjs.org/)
 
 You can now access the site locally at [localhost:3000](http://localhost:3000/)
 
+## Project Structure
+
+The project structure is broken up into two parts, the CronUpdater, and the WebApp. 
+
+* The function of the CronUpdater is to check at regular intervals whether or not the WSDOT or NWS has new alerts, update the current alerts, and store this information on the database. The user never see's any part of the CronUpdater.
+
+* The WebApp handles all user interactions like one might see in any other website.
+
+NOTE: While CronUpdater refers to an actual directory in the project structure WebApp is a conceptual term that contains all of the other files and sub directories in the projects main directory.
+### CronUpdater
+
+The CronUpdater uses a CronJob at a 5 minute interval to regularly check for new alerts in the Spokane area.
+
+The CronUpdater is made up of the following js files:
+
+* autoUpdater
+* emailFunction
+* trafficFunction
+* weatherFunction
+
+### The WebApp
+
