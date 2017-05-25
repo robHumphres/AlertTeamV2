@@ -5,7 +5,7 @@ This project has been created by an EWU senior project team. The purpose of this
 ## Getting Started
 
 ### Prerequisites
-To get the web app running locally on your system you will first need to install the following components:
+To get the web app running locally on your system you will first need to get the project file onto your system. Then you will need to install the following components:
 
 * [Nodejs](https://nodejs.org/en/download/)
 * [MongoDB](https://www.mongodb.com/download-center#community)
