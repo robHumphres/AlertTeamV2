@@ -163,7 +163,7 @@ module.exports.weatherAlerts = function(){
                           alertCtr++;
 
                           if(alertCtr == ids.length && newAlert == true){
-                            Email.sendEmail("New Weather Alerts");
+                            Email.sendEmail("weather");
                           }
                         });//End of "find" callback.
     										//console.log('ID:   ' + aId);

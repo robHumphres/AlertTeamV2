@@ -19,7 +19,7 @@ module.exports.sendEmail = function(text){
           to: result[i].email, // list of receivers
           subject: 'New Alerts', // Subject line
           text: text, // plain text body
-          html: '<h>New alerts have been registered</h><br /><a href="http://localhost:3000">localhost:3000</a>' // html body
+          html: '<h>New ' + text + ' alerts have been registered</h><br /><a href="http://localhost:3000">localhost:3000</a>' // html body
         };
 
         // send mail with defined transport object
