@@ -45,5 +45,17 @@ The CronUpdater is made up of the following js files:
 * weatherFunction
 * wsdotSoapFunction
 
+#### db
+
+#### autoUpdater
+
+#### emailFunction
+
+#### trafficFunction
+
+#### weatherFunction
+
+#### wsdotSoapFunction
+
 ### The WebApp
 
