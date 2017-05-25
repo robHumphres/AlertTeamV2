@@ -4,6 +4,7 @@ This project has been created by an EWU senior project team. The purpose of this
 
 ## Getting Started
 
+### Prerequisites
 To get the web app running locally on your system you will first need to install the following components:
 
 * [Nodejs](https://nodejs.org/en/download/)
@@ -13,7 +14,7 @@ To get the web app running locally on your system you will first need to install
 
 These are the four key components of [MEAN stack](http://meanjs.org/)
 
-Once you have these components installed you have a few more steps to run the program.
+### Running The Program
 
 1. In your projects directory enter in the command: npm install. This will install all of the node [modules](https://www.w3schools.com/nodejs/nodejs_modules.asp) needed to run this project.
 2. Activate MongoDB.
