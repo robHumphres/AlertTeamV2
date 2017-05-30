@@ -91,6 +91,14 @@ For more information on any of the collections referenced here see the models fi
 
 #### wsdotSoapFunction.js
 
+This file exports one function called getAlertsForSpokaneAreaInCallback. This function does exactly as it is described. It gets all of the WSDOT traffic alerts for the Spokane area and passes those values to the call back function that you speicfy. The one example of this can be found in trafficFunction.js.
+
+The function getAlertsForSpokaneAreaInCallback is performed primarily through the use of the node module [soap](https://github.com/vpulim/node-soap) which creates a soap client from the WSDOT soap api, which is located at [this](http://www.wsdot.wa.gov/traffic/api/HighwayAlerts/HighwayAlerts.svc) WSDL page. The particular method used from this page is GetAlertsForMapArea(areaCode) (remember this is not our function, this function comes from the WSDOT's api). This returns the alerts from the specified map area. We've hardcoded the map area to be the map area for Spokane. 
+
+If you are looking to explore more of the WSDOT's data The soap client has access to many more WSDOT functions and the [WSDOT traveler API](http://wsdot.wa.gov/traffic/api/) has more API's than just highway alerts. 
+
+Note: The WSDOT has a function that returns the map area codes if you want to change it to a different one. If you want to view them click this [link](http://wsdot.wa.gov/Traffic/api/HighwayAlerts/HighwayAlertsREST.svc/GetMapAreasAsXml?AccessCode={e0b86f9a-d27f-473e-9068-7c15c919df33}).
+
 ### The WebApp
 
 The WebApp is term describing everything that is not in the CronUpdater directory. The WebApp is the actual website whereas CronUpdater is a standalone application.
