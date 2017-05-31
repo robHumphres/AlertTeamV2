@@ -1,5 +1,5 @@
 <navigation></navigation>
-<div class="container" >
+<div class="container">
 
   <h1>Alert System Gatherer</h1>
 
@@ -22,18 +22,23 @@
   				<p>{{post.agency}}</p> <!-- This is where the agency goes -->
 
   				</div>
+
 		  <!-- post title-->
   				<div class="col-xs-8 text-middle">
-  					<p style="font-size:120%">{{post.title}}</p> <!-- Title of whats happening? -->
+    					<p style="font-size:120%">{{post.title}}</p>
 
-  					<p>{{post.briefDescription}}</p><!--<p>{{post.title}}</p> -->
-                  <br/><br/>
-                  <!-- $index is a scope that ng-repeat uses kind of like a for loop counter. need it for dynamic panels and collapses -->
-    			 <a data-toggle="collapse" data-target = "#collapse{{$index}}" href="">
-    			 {{post.clickMore}}
+              <!-- brief description of whats happening in the post. -->
+    					<p>{{post.briefDescription}}</p>
+                    <br/><br/>
 
-           <!-- this is where the brief header will go -->
-    			 </a>
+             <!-- $index is a scope that ng-repeat uses kind of like a for loop counter.
+             need it for dynamic panels and collapses.
+              "Click here for more" will only appear if a breifdescription is greater than 200 characters -->
+      			 <a data-toggle="collapse" data-target = "#collapse{{$index}}" href="">
+      			 {{post.clickMore}}
+
+             <!-- this is where the brief header will go -->
+      			 </a>
   				</div>
 
   		</div>
@@ -43,7 +48,7 @@
 
     <!-- where the bootstrap collapse panel is created -->
     <div id="collapse{{$index}}" class="panel-collapse collapse">
-          <p align="center"><!-- {{agency.description}} -->
+          <p align="center">
             <br/>
           {{post.description}}
           </p>
