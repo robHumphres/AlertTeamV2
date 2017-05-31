@@ -3,7 +3,7 @@
   angular
     .module('meanApp')
     .controller('homeCtrl', homeCtrl);
-    console.log('sups');
+
 
     homeCtrl.$inject = ['$location','postData'];
     function homeCtrl ($location,postData) {
@@ -14,7 +14,7 @@
       postData.getPosts()
       .success(function(data){
         vm.post = data;
-        
+
 
 })
       .error(function(e){
