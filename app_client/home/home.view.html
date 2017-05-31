@@ -3,7 +3,9 @@
 
   <h1>Alert System Gatherer</h1>
 
-  <p>Please <a href="login">sign in</a> or <a href="register">register</a>?</p>
+  <p ng-if=navvm.currentUser.name> Welcome back, <b>{{navvm.currentUser.name}} </b>  </p>
+  <p ng-if=!navvm.currentUser.name> Please <a href="login">sign in</a> or <a href="register">register</a>? </p>
+
   <br/><br/>
   <div class="container" >
     <!-- start of Boot Strap Paneling -->
