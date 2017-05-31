@@ -25,7 +25,7 @@ You can now access the site locally at [localhost:3000](http://localhost:3000/)
 
 ## Project Structure
 
-The project structure is broken up into two parts, the CronUpdater, and the WebApp. 
+The project structure is broken up into two parts, the CronUpdater, and the WebApp.
 
 * The function of the CronUpdater is to check at regular intervals whether or not the WSDOT or NWS has new alerts, update the current alerts, and store this information on the database. The user never see's any part of the CronUpdater.
 
@@ -76,7 +76,7 @@ Parameters:
 * array - TrafficAlert[] - the input array of alerts that will be parsed
 * index - int - the current index in the array. This is used to determine when the recursion should end.
 * isNew - boolean - true if the active alerts hold an alert that is new to our db, false if not.
-* callback - function - This function is called at the end of the recursion. In our case it was used to send an email notification if 
+* callback - function - This function is called at the end of the recursion. In our case it was used to send an email notification if
 * isNew == true
 
 addAlertArray(array, index, isNew, callback)
@@ -93,9 +93,9 @@ For more information on any of the collections referenced here see the models fi
 
 This file exports one function called getAlertsForSpokaneAreaInCallback. This function does exactly as it is described. It gets all of the WSDOT traffic alerts for the Spokane area and passes those values to the call back function that you speicfy. The one example of this can be found in trafficFunction.js.
 
-The function getAlertsForSpokaneAreaInCallback is performed primarily through the use of the node module [soap](https://github.com/vpulim/node-soap) which creates a soap client from the WSDOT soap api, which is located at [this](http://www.wsdot.wa.gov/traffic/api/HighwayAlerts/HighwayAlerts.svc) WSDL page. The particular method used from this page is GetAlertsForMapArea(areaCode) (remember this is not our function, this function comes from the WSDOT's api). This returns the alerts from the specified map area. We've hardcoded the map area to be the map area for Spokane. 
+The function getAlertsForSpokaneAreaInCallback is performed primarily through the use of the node module [soap](https://github.com/vpulim/node-soap) which creates a soap client from the WSDOT soap api, which is located at [this](http://www.wsdot.wa.gov/traffic/api/HighwayAlerts/HighwayAlerts.svc) WSDL page. The particular method used from this page is GetAlertsForMapArea(areaCode) (remember this is not our function, this function comes from the WSDOT's api). This returns the alerts from the specified map area. We've hardcoded the map area to be the map area for Spokane.
 
-If you are looking to explore more of the WSDOT's data The soap client has access to many more WSDOT functions and the [WSDOT traveler API](http://wsdot.wa.gov/traffic/api/) has more API's than just highway alerts. 
+If you are looking to explore more of the WSDOT's data The soap client has access to many more WSDOT functions and the [WSDOT traveler API](http://wsdot.wa.gov/traffic/api/) has more API's than just highway alerts.
 
 Note: The WSDOT has a function that returns the map area codes if you want to change it to a different one. If you want to view them click this [link](http://wsdot.wa.gov/Traffic/api/HighwayAlerts/HighwayAlertsREST.svc/GetMapAreasAsXml?AccessCode={e0b86f9a-d27f-473e-9068-7c15c919df33}).
 
@@ -109,7 +109,56 @@ The WebApp is term describing everything that is not in the CronUpdater director
 
 #### app_client
 
-### Rob do this part
+App client consists of a MVW (Model-view-whatever) architecture as for the proper use of using AngularJS.
+the folders are split up into 5 main folders(auth,register,common,home,profile,weather) with some sub folders. Each sub folder contains its own
+sub-controller, html5/angularJS, as well as the Navigation bar.
+
+The sub-controllers work using dependency injection with angular. The dependency inject comes from the Main Common folder within the services folder. AngularJS only instantiates a service when an application component depends on it.
+
+The services that used in the app_client side are authentication.service, data.service, and post.service. Each service is used throughout the whole applications front-end including profile,home page, and weather.
+
+The home folder contains a decent amount of angular to make it dynamic. First one on home.view.html is ng-if which is used to see if there's any users logged into the application. It's checking with the data binding to see if there's anything within the navvm string. naavm is a setting within main.js used as the Controlleras that'll talk about later.
+
+home.view.html contains some bootstrap such as panels and collapses. These get initialized in the startup in the application from ng-repeat, which is equivalent as a for loop. Each panel is dynamically created using the $scope index counter functionality of angularjs. Within the Panels the following properties are within each post.
+
+* agency
+* title
+* briefDescription
+* clickMore
+* description
+* time
+
+The properties above will always have something within them expect the clickMore. The clickMore works on the back-end from gather posts from the service and checks to see if the briefDescription exceeds 200 characters. If it does exceed a href on the bottom of the panel will show the "Click here for more" providing a way to access the collapse panel showing the full details of the post. Each Collapse panel has to the ability to stay opened until you click the href again. These properties are set within the home.controller.js and the controller calls the post.service.js dependecy injection.
+
+Profile contains the same layout as home, and it's dependency injection goes off the authentication.services.js from the controller.
+
+### is weather folder going to stay there? or are we going to remove it?
+
+Api_Client also contains 4 other files: 
+
+* app.min.js
+* app.min.js.map
+* index.html
+* main.js
+
+You DO NOT want to touch app.min,js or the .js.map files in this folder. These files are automatically generated by GULP. GULP is used for minification, and preps for production using this tool.
+
+Index.html contains the basic style sheets, ng-view and scripting sources for bootstrap, angularjs, and app.js.
+
+main.js contains the routing functionality of the application. The gist of it is that it controls what you're putting inside the url part of the web application in a "switch case". We have 4 different paths, and non-valid paths will redirect you back to the home page. Each case in the switch contains the following:
+
+* templateUrl
+* controller
+* controllerAs
+
+The templateUrl tells where the html will be displayed in the ng-view.
+
+The controller tells where the controller for each templateUrl will be. (always the same place as the templateUrl)
+
+The controllerAs is what your scope for that controller will be that directly relates to the html page.
+
+
+
 
 ### Other files in the WebApp
 
@@ -118,4 +167,3 @@ The WebApp is term describing everything that is not in the CronUpdater director
 ## Down here we will have some more stuff. I've been [using](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2) this to guide me.
 
 NOTE: This ain't done yet
-
