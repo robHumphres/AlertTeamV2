@@ -14,7 +14,10 @@
       postData.getPosts()
       .success(function(data){
         vm.post = data;
-
+        //Sorts the array from newest to oldest.
+        vm.post.sort(function(a,b){
+          return new Date(b.time) - new Date(a.time);
+        });
 
 })
       .error(function(e){
