@@ -119,12 +119,15 @@ module.exports.weatherAlerts = function(){
 
                         var activePost;
                         var activeWeatherPost;
-                        if(desc.length > 100){
-                          var briefDesc = desc.substring(0, 99);
+
+                        //add the active alerts to the db
+                        if(desc.length > 200){
+                          var briefDesc = desc.substring(0, 199);
                           activePost = new ActivePost({agency: 'NWS', imageLink: 'https://lh3.googleusercontent.com/h-JAS3MkLJY01uHuSAmc2JHB_LPegfQfYpT8qYs1R3KgrJUOkuGq21qjTlrdP1a79g=w300',title: title, briefDescription: briefDesc, description: desc, time: start , clickMore: "Click For More Info"});
                           activeWeatherPost = new ActiveWeatherPost({agency: 'NWS', imageLink: 'https://lh3.googleusercontent.com/h-JAS3MkLJY01uHuSAmc2JHB_LPegfQfYpT8qYs1R3KgrJUOkuGq21qjTlrdP1a79g=w300',title: title, briefDescription: briefDesc, description: desc, time: start, clickMore: "Click For More Info"});
                         }
                         else{
+                          console.log("fuck");
                           activePost = new ActivePost({agency: 'NWS', imageLink: 'https://lh3.googleusercontent.com/h-JAS3MkLJY01uHuSAmc2JHB_LPegfQfYpT8qYs1R3KgrJUOkuGq21qjTlrdP1a79g=w300',title: title, briefDescription: desc, time: start});
                           activeWeatherPost = new ActiveWeatherPost({agency: 'NWS', imageLink: 'https://lh3.googleusercontent.com/h-JAS3MkLJY01uHuSAmc2JHB_LPegfQfYpT8qYs1R3KgrJUOkuGq21qjTlrdP1a79g=w300',title: title, briefDescription: desc, time: start});
                         }
@@ -143,7 +146,7 @@ module.exports.weatherAlerts = function(){
                             var weatherPost;
 
                             if(desc.length > 200){
-                              var briefDesc = desc.substring(0, 99);
+                              var briefDesc = desc.substring(0, 199);
                               newWeather = new wAlert({AlertID: aId, AlertInfo: jsonString});
                               weatherPost = new Post({agency: 'NWS', imageLink: 'https://lh3.googleusercontent.com/h-JAS3MkLJY01uHuSAmc2JHB_LPegfQfYpT8qYs1R3KgrJUOkuGq21qjTlrdP1a79g=w300',title: title, briefDescription: briefDesc, description: desc, time: end, clickMore: "Click For More Info"});
                             }
