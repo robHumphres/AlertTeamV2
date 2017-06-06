@@ -87,7 +87,21 @@ For more information on any of the collections referenced here see the models fi
 
 #### weatherFunction.js
 
-### Alex put your stuff here
+This file exports a function called weatherFunction(). This function queries the National Weather Service's CAP (Common Alert Protocol) message service to obtain a list of active weather alerts for a specified region within the United States. You can visit alerts.weather.gov to obtain the URL specific to the region you want alerts for. This breaks down by state, county, and more generalized geographical areas (i.e. Columbia Basin or Seattle Area). 
+
+In this function is an array called "urlArray". This is an array of all regions we want alerts for. Currently there are two URLs (as strings) in the array, Washington and Idaho. This means those URLs will contain listings for all active weather alerts in each state. Essentially the array is a way to list each region you want to get weather alerts for. If in the future you want only Spokane county, you would put the URL from alerts.weather.gov for Spokane County into the array and it would be the only URL in there. Then you would receive only Spokane specific weather alerts.
+
+The basic logic of the function breaks down like this: The base URLs above provide an XML document that is essentially an index of all active alerts for that region. Each entry in this XML has it's own unique URL (which also serves as a unique ID for that specific alert) which, if followed, provides another XML document that contains the actual information of the weather alert from the title, severity, and description of alert to the saftey instructions issued by the National Weather Service. The function goes through the first XML document, the index of alerts, and then follows each URL and for each URL it creates a weatherAlert entry in the database after first ensuring, via the unique ID, that it has not already been placed into the database. There is conversion to JSON in this process which you can see in the code using the XML2JS module. 
+
+A more visual representation:
+
+  For Each Region in urlArray -> Active Alerts Index.
+            For Each Alert in Index -> Detailed Description
+                     For Each Detailed Description -> Create an alert if not a duplicate.
+                     
+
+Ideally, all that should need to be changed in the future is the list of regions/counties to be more specifc or more broad. 
+
 
 #### wsdotSoapFunction.js
 
