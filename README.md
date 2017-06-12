@@ -184,8 +184,4 @@ The controllerAs is what your scope for that controller will be that directly re
 
 ### Other files in the WebApp
 
-#### Someone will do this part
-
-## Down here we will have some more stuff. I've been [using](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2) this to guide me.
-
-NOTE: This ain't done yet
+## Note: this is still in testing, V1
